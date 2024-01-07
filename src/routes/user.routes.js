@@ -23,21 +23,25 @@ router.route("/login").post(loginUser)
 
 router.route("/logout").post(verifyJWT,logoutUser)
 
-router.route("/refreshAccessToken").post(refreshAccessToken)
+router.route("/refresh-token").post(refreshAccessToken)
 
-router.route("/changeCurrentPassword").post(verifyJWT,changeCurrentPassword)
+router.route("/change-password").post(verifyJWT,changeCurrentPassword)
 
-router.route("/getCurrentUser").get(verifyJWT,getCurrentUser)
+router.route("/current-user").get(verifyJWT,getCurrentUser)
 
-router.route("/updateAccountDetails").post(verifyJWT,updateAccountDetails)
+router.route("/update-account").patch(verifyJWT,updateAccountDetails)
 
-router.route("/updateAvatar").post(verifyJWT,updateAvatar)
+router.route("/update-avatar").patch(verifyJWT,
+    upload.single("avatar"),
+    updateAvatar)
 
-router.route("/updateUserCoverImage").post(verifyJWT,updateUserCoverImage)
+router.route("/update-coverImage").post(verifyJWT,
+    upload.single("coverImage"),
+    updateUserCoverImage)
 
-router.route("/getUserChannelProfile").get(verifyJWT,getUserChannelProfile)
+router.route("/get-channel-profile/:username").get(verifyJWT,getUserChannelProfile)
 
-router.route("/getWatchHistory").post(verifyJWT,getWatchHistory)
+router.route("/watch-history").get(verifyJWT,getWatchHistory)
 
 
 
